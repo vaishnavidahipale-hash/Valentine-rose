@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Rose</title>
+    <style>
+        body {
+            background-color: #f8f3f2;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        h1 {
+            color: #e74c3c;
+            font-size: 3em;
+            margin-top: 50px;
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #c0392b;
+        }
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #e74c3c;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: float 5s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Valentine's Day!</h1>
+    <button class="button" onclick="alert('Love is in the air!')">Click Me!</button>
+    <script>
+        // Create floating hearts
+        for (let i = 0; i < 10; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = Math.random() * 100 + 'vh';
+            document.body.appendChild(heart);
+            heart.style.animationDuration = Math.random() * 5 + 3 + 's';
+        }
+    </script>
+</body>
+</html>
