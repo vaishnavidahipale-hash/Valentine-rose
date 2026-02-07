@@ -3,95 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine Rose</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <title style="transition: color 1s;" id="title">Happy Valentine's Day!</title>
     <style>
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #ffe6f2;
+            background: linear-gradient(to bottom, #ffcccc, #ffccff);
             overflow: hidden;
         }
         h1 {
-            color: #ff3366;
             text-align: center;
-            margin-top: 20px;
-            animation: colorChange 3s linear infinite;
+            color: #ff3366;
         }
-        @keyframes colorChange {
-            0%, 100% { color: #ff3366; }
-            50% { color: #ffcc00; }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            background: #ff3366;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
         }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            height: 100vh;
+        button:hover {
+            background: #ff6699;
         }
         .heart {
             position: absolute;
             width: 50px;
             height: 50px;
-            background-color: #ff3366;
-            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-            animation: fall 5s linear infinite;
+            background: url('heart.png') no-repeat center center;
+            background-size: contain;
+            animation: fall 5s infinite;
         }
         @keyframes fall {
-            0% { top: -50px; }
-            100% { top: 100vh; }
+            0% { top: -10%; opacity: 1; }
+            100% { top: 100%; opacity: 0; }
         }
-        /* Music Player */
-        .music-player {
-            margin: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .floating-rose {
+            position: absolute;
+            width: 100px;
+            animation: float 3s infinite;
         }
-        /* Photo Gallery */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-            padding: 20px;
-        }
-        .gallery img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            transition: transform 0.2s ease;
-        }
-        .gallery img:hover {
-            transform: scale(1.1);
+        @keyframes float {
+            0% { transform: translatey(0); }
+            50% { transform: translatey(-15px); }
+            100% { transform: translatey(0); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Happy Valentine's Day!</h1>
-        <div class="music-player">
-            <audio controls>
-                <source src="your-music-file.mp3" type="audio/mpeg">
-                Your browser does not support the audio tag.
-            </audio>
-        </div>
-        <div class="gallery">
-            <img src="image1.jpg" alt="Gallery Image 1">
-            <img src="image2.jpg" alt="Gallery Image 2">
-            <img src="image3.jpg" alt="Gallery Image 3">
-            <img src="image4.jpg" alt="Gallery Image 4">
-        </div>
-        <script>
-            // Create falling hearts
-            for (let i = 0; i < 20; i++) {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                heart.style.left = Math.random() * 100 + 'vw';
+    <h1 id="title">Happy Valentine's Day!</h1>
+    <button onclick="alert('Love is in the air!')">Click Me</button>
+    <img src="rose.png" class="floating-rose" alt="Floating Rose">
+    <script>
+        setInterval(() => {
+            document.getElementById('title').style.color = '#' + Math.floor(Math.random()*16777215).toString(16);
+        }, 1000);
+        
+        function createHearts(num) {
+            for (let i = 0; i < num; i++) {
+                let heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.style.left = Math.random() * 100 + 'vw'; 
                 document.body.appendChild(heart);
             }
-        </script>
-    </div>
+        }
+        createHearts(10); // Create 10 falling hearts
+    </script>
 </body>
 </html>
